@@ -1,0 +1,14 @@
+2023-Nov-04 20:24:02,025 [main] com.demotest.stepdefinitions.TestBase 
+  INFO  All Browsers are closed
+2023-Nov-04 20:24:02,056 [main] com.demotest.stepdefinitions.TestBase 
+  INFO  Executing suite on local
+2023-Nov-04 20:24:16,400 [main] com.demotest.stepdefinitions.ContactSteps 
+  INFO  Thanks for the message!!
+2023-Nov-04 20:24:20,448 [main] com.demotest.stepdefinitions.TestBase 
+  INFO  All Browsers are closed
+2023-Nov-04 20:24:20,473 [main] com.demotest.stepdefinitions.TestBase 
+  INFO  Executing suite on local
+2023-Nov-04 20:24:35,065 [main] com.demotest.stepdefinitions.ContactSteps 
+  INFO  Thanks for the message!!
+2023-Nov-04 20:24:44,120 [main] com.demotest.stepdefinitions.TestBase 
+  INFO  All Browsers are closed
