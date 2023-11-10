@@ -61,6 +61,10 @@ public class Keywords {
 
 	}
 	
+	public void clear(String locatorType, String locatorValue) {
+		getWebElement(locatorType,locatorValue).clear();
+	}
+	
 	public String getText(String locatorType, String locatorValue) {
 		return getWebElement(locatorType, locatorValue).getText();
 	}

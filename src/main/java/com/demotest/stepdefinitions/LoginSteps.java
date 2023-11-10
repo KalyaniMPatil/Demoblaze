@@ -7,6 +7,7 @@ import org.testng.Assert;
 import com.demotest.base.Keywords;
 import com.demotest.locators.Locator;
 import com.demotest.pages.LoginPage;
+import com.demotest.utilities.WaitFor;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,7 +18,7 @@ public class LoginSteps {
 	private static final Logger LOG = Logger.getLogger(LoginSteps.class);
 	Keywords keyword = new Keywords();
 	LoginPage login= new LoginPage();
-	
+	WaitFor wait= new WaitFor();
 	@Given("User on the Login page")
 		public void launchAppUrl() {
 		login.lauchURL();
@@ -46,24 +47,20 @@ public class LoginSteps {
 	public void login_with_blank_password() {
 		login.enterUserName(Locator.loginUsername);
 		login.enterPssword(Locator.loginBlankCredential);
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
 	
 	@Then("User should logged in successfully")
 	public void checking_login_function() {
+		wait.elementToBePresentInList(login.Login_Button);
 		login.clickLogInBtn();
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		//WaitFor.elementToBePresentInList(login.Logout_tab);
 		Assert.assertTrue(login.Logout_tab.isEnabled());	
 	}
 	
 	@Then("User should get an error for login")
 	public void checking_login_function_error() {
+		wait.elementToBePresentInList(login.Login_Button);
 		login.clickLogInBtn();
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
-		//WaitFor.elementToBePresentInList(login.Logout_tab);
 		Alert a= TestBase.driver.switchTo().alert();
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(40));
 		String actualMsg=a.getText();
 		LOG.info(actualMsg);
 		Assert.assertEquals(actualMsg, Locator.logInBlankCredentials);

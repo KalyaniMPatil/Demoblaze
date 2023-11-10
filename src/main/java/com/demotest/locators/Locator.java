@@ -7,7 +7,7 @@ public interface Locator {
 	
 	String signupSuccessful="Sign up successful.";
 	String signupError="Please fill out Username and Password.";
-	String signupUsername="TestingShastraUser6020";
+	String signupUsername="TestingShastraUser6030";
 	String signupPassword="TestingShastra";
 	String signupBlankCredential="";
 	

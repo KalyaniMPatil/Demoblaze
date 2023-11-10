@@ -2,6 +2,7 @@ package com.demotest.utilities;
 import java.time.Duration;
 import java.util.List;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +26,12 @@ public class WaitFor {
 	}
 
 	public static void elementToBePresentInList(WebElement element) {
-		wait.until(ExpectedConditions.presenceOfElementLocated((By) element));
+		
+		wait.until(ExpectedConditions.elementToBeClickable(element));
+	}
+	
+public static void alertToBePresent() {
+		wait.until(ExpectedConditions.alertIsPresent());
 	}
 
 }

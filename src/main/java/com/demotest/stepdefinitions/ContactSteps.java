@@ -8,6 +8,7 @@ import org.testng.asserts.SoftAssert;
 import com.demotest.base.Keywords;
 import com.demotest.locators.Locator;
 import com.demotest.pages.ContactPage;
+import com.demotest.utilities.WaitFor;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,6 +18,7 @@ public class ContactSteps {
 	private static final Logger LOG = Logger.getLogger(ContactSteps.class);
 	Keywords keyword = new Keywords();
 	ContactPage contact= new ContactPage();
+	WaitFor wait= new WaitFor();
 	
 	@Given("User on the Contact page")
 	public void launchAppUrl() {
@@ -29,7 +31,6 @@ public class ContactSteps {
 		contact.enterContactEmail(Locator.contactEmail);
 		contact.enterContactName(Locator.contactName);
 		contact.enterMessage(Locator.contactMsg);
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
 	
 	@When("Email Name and Message credentials are Blank")
@@ -37,7 +38,6 @@ public class ContactSteps {
 		contact.enterContactEmail(Locator.contactBlankCredential);
 		contact.enterContactName(Locator.contactBlankCredential);
 		contact.enterMessage(Locator.contactBlankCredential);
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
 	
 	@When("User entered contact name message and keep email field blank")
@@ -45,7 +45,6 @@ public class ContactSteps {
 		contact.enterContactEmail(Locator.contactBlankCredential);
 		contact.enterContactName(Locator.contactName);
 		contact.enterMessage(Locator.contactMsg);
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
 	
 	@When("User entered contact email message and keep name field blank")
@@ -53,7 +52,6 @@ public class ContactSteps {
 		contact.enterContactEmail(Locator.contactEmail);
 		contact.enterContactName(Locator.contactBlankCredential);
 		contact.enterMessage(Locator.contactMsg);
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
 	
 	@When("User entered contact email name and keep message field blank")
@@ -61,13 +59,12 @@ public class ContactSteps {
 		contact.enterContactEmail(Locator.contactEmail);
 		contact.enterContactName(Locator.contactName);
 		contact.enterMessage(Locator.contactBlankCredential);
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 	}
 	
 	@Then("User should get thank you message for contacting")
 	public void checking_contact_with_valid_credentials(){
+		wait.elementToBePresentInList(contact.Send_msg_Btn);
 		contact.clickSendMsgBtn();
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		String actualMsg= TestBase.driver.switchTo().alert().getText();
 		LOG.info(actualMsg);
 		Assert.assertEquals(actualMsg, Locator.contactSuccessMsg);
@@ -75,8 +72,8 @@ public class ContactSteps {
 	
 	@Then("User should get Error Message for blank details")
 	public void checking_contact_with_blank_credentials(){
+		wait.elementToBePresentInList(contact.Send_msg_Btn);
 		contact.clickSendMsgBtn();
-		TestBase.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 		String actualMsg= TestBase.driver.switchTo().alert().getText();
 		LOG.info(actualMsg);
 		SoftAssert soft=new SoftAssert();

@@ -50,11 +50,14 @@ public class TestBase {
 		} else {
 			LOG.info("Executing suite on grid");
 			FirefoxOptions firefoxOptions = new FirefoxOptions();
+			//firefoxOptions.setCapability("browserVersion", "115");
+			//firefoxOptions.setCapability("platformName", "Windows");
 			firefoxOptions.setCapability("se:name", "My simple test");
 			firefoxOptions.setCapability("se:sampleMetadata", "Sample metadata value");
 
-			driver = new RemoteWebDriver(new URL("http://192.168.0.115:4444"), firefoxOptions);
+			driver = new RemoteWebDriver(new URL("http://192.168.56.1:4444"), firefoxOptions);
 		}
+		
 	}
 
 	@After
